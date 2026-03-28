@@ -51,38 +51,14 @@ class Filter:
         pass
 
     def inlet(self, body: dict, __user__: Optional[dict] = None) -> dict:
-        """
-        inlet（入口攔截器）：在請求送往 AI 模型之前執行。
-        
-        功能：
-        - 檢查對話輪數是否超過上限
-        - 若超過上限則拋出例外，阻止請求繼續
-        
-        參數：
-        - body: 請求內容，包含對話訊息等資料
-        - __user__: 當前使用者資訊，包含角色與個人 valves 設定
-        
-        回傳：
-        - 處理後的 body（可在此修改請求內容）
-        """
-        print(f"inlet:{__name__}")
+        #我要取得使用者輸入的內容
+
+        print(f"inlet:{__name__}")      
         print(f"inlet:body:{body}")
         print(f"inlet:user:{__user__}")
-
-        # 只對 "user" 或 "admin" 角色進行輪數檢查
-        if __user__.get("role", "admin") in ["user", "admin"]:
-            messages = body.get("messages", [])
-
-            # 取使用者上限與系統上限中較小的值，作為實際上限
-            # 確保使用者無法超過系統設定的最大值
-            max_turns = min(__user__["valves"].max_turns, self.valves.max_turns)
-
-            # 若訊息數量超過上限，拋出例外中止請求
-            if len(messages) > max_turns:
-                raise Exception(
-                    f"已超過對話輪數上限。最大輪數：{max_turns}"
-                )
-
+        print(f"使用者輸入的內容: {body.get('content', 'No content found')}")
+        print(f"使用者輸入的內容: {body.get('content', 'No content found')}")
+        print(f"使用者輸入的內容: {body.get('content', 'No content found')}")   
         return body
 
     def outlet(self, body: dict, __user__: Optional[dict] = None) -> dict:
