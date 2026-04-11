@@ -1,0 +1,3 @@
+Host my_raspberry_pi
+HostName pi4MAGI0408.local
+user pi
